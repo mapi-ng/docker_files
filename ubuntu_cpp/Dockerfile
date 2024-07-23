@@ -9,6 +9,7 @@ RUN apt update && \
     apt install -y --no-install-recommends \
         build-essential \
         ca-certificates \
+        clang \
         clang-18 \
         clang-tidy \
         cmake \
@@ -19,6 +20,19 @@ RUN apt update && \
         vim \
         wget \
         && rm -rf /var/lib/apt/lists/*
+
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 90 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-14 90 && \
+    update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 100 && \
+    update-alternatives --set cc /usr/bin/gcc && \
+    update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 100 && \
+    update-alternatives --set c++ /usr/bin/g++
+
+RUN update-alternatives --set gcc "/usr/bin/gcc-14" && \
+    update-alternatives --set g++ "/usr/bin/g++-14"
+
+# Verify installation
+RUN gcc --version && g++ --version && cmake --version && ninja --version
 
 # Set the default command to run when the container starts
 CMD ["bash"]
