@@ -31,7 +31,7 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 90 && \
 RUN update-alternatives --set gcc "/usr/bin/gcc-14" && \
     update-alternatives --set g++ "/usr/bin/g++-14"
 
-# Verify installation
+# Print installation info
 RUN gcc --version && g++ --version && cmake --version && ninja --version
 
 # Set the default command to run when the container starts
