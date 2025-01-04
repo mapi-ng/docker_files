@@ -50,6 +50,6 @@ Make sure following extensions are installed:
   * CMakeTools
 
 From the IDE, open the folder with your CMake project.
-See [sample ESP8266 project]().
+See [sample ESP8266 project](https://github.com/mapi-ng/esp8266_cmake_template).
 
 Using _Dev Containers_ extension, _Attach to Running Container..._ and select the container started in previous step.
