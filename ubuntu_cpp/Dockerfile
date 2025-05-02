@@ -1,5 +1,5 @@
 # Use the official Ubuntu 24.04 as the base image
-FROM ubuntu:24.04
+FROM ubuntu:25.04
 
 # Set environment variables to prevent interactive prompts during package installation
 ENV DEBIAN_FRONTEND=noninteractive
@@ -10,26 +10,26 @@ RUN apt update && \
         build-essential \
         ca-certificates \
         clang \
-        clang-18 \
+        clang-20 \
         clang-tidy \
         cmake \
         curl \
         git \
-        g++-14 \
+        g++-15 \
         ninja-build \
         vim \
         wget \
         && rm -rf /var/lib/apt/lists/*
 
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 90 && \
-    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-14 90 && \
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-15 90 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-15 90 && \
     update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 100 && \
     update-alternatives --set cc /usr/bin/gcc && \
     update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 100 && \
     update-alternatives --set c++ /usr/bin/g++
 
-RUN update-alternatives --set gcc "/usr/bin/gcc-14" && \
-    update-alternatives --set g++ "/usr/bin/g++-14"
+RUN update-alternatives --set gcc "/usr/bin/gcc-15" && \
+    update-alternatives --set g++ "/usr/bin/g++-15"
 
 # Print installation info
 RUN gcc --version && g++ --version && cmake --version && ninja --version
